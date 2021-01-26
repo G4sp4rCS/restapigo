@@ -11,6 +11,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// task json structure
 type task struct {
 	ID      int    `json:ID`
 	Name    string `json:Name`
@@ -18,6 +19,7 @@ type task struct {
 }
 type allTasks []task
 
+// sample task
 var tasks = allTasks{
 	{
 		ID:      1,
@@ -117,7 +119,7 @@ func updateTask(w http.ResponseWriter, r *http.Request) {
 
 // index route..
 func indexRoute(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "testeando api")
+	fmt.Fprintf(w, "this is the index route!")
 
 }
 
@@ -132,6 +134,6 @@ func main() {
 	router.HandleFunc("/tasks/{id}", updateTask).Methods("PUT")
 	router.HandleFunc("/tasks/{id}", deleteTask).Methods("DELETE")
 	// initialize server..
-	fmt.Println("ejecutando servidor en puerto 8080")
+	fmt.Println("server on port 8080")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
